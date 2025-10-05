@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Material Upload</title>
+</head>
+<body>
+    <h1>Test Material Upload</h1>
+    <form id="uploadForm">
+        <div>
+            <label>Title:</label>
+            <input type="text" id="title" value="Test Material" required>
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea id="description" required>Test description for material upload</textarea>
+        </div>
+        <div>
+            <label>Type:</label>
+            <select id="type">
+                <option value="document">Document</option>
+                <option value="video">Video</option>
+                <option value="pdf">PDF</option>
+                <option value="presentation">Presentation</option>
+            </select>
+        </div>
+        <div>
+            <label>Course ID:</label>
+            <input type="text" id="courseId" value="general">
+        </div>
+        <div>
+            <label>File:</label>
+            <input type="file" id="file" required>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Uploading...';
+            
+            const formData = new FormData();
+            formData.append('file', document.getElementById('file').files[0]);
+            formData.append('title', document.getElementById('title').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('type', document.getElementById('type').value);
+            formData.append('courseId', document.getElementById('courseId').value);
+            
+            try {
+                // Note: This will fail due to authentication, but we can see the CORS/server response
+                const response = await fetch('http://localhost:5002/api/materials', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `<h3>Response (${response.status}):</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<h3>Error:</h3><p>${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

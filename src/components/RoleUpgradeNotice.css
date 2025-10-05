@@ -1,0 +1,67 @@
+.role-upgrade-notice {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.notice-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notice-icon {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notice-text {
+  flex: 1;
+}
+
+.notice-text h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.notice-text p {
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.notice-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .notice-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .notice-features {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
